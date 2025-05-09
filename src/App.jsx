@@ -1,14 +1,10 @@
 import React from "react";
-import Navbar from "../src/components/navbar/Navbar.jsx";
-import { Routes, Route } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
+import { routes } from "./routes.jsx";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <Routes></Routes>
-    </>
-  );
+  const routing = useRoutes(routes);
+  return routing;
 }
 
 export default App;

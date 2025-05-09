@@ -72,4 +72,24 @@
   .navbar-auth .signup:hover {
     background-color: #1f2937;
   }
+
+  .navbar-search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search input {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.navbar-search input:focus {
+  border-color: #6366f1;
+}
+
   
