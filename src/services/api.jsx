@@ -23,3 +23,36 @@ export const getPublicacionesPorCurso = async (cursoId) => {
     return [];
   }
 };
+
+
+export const crearComentario = async (data) => {
+  try {
+    const res = await apiClient.post("/comentarios/crearComentario", data);
+    return res.data;
+  } catch (e) {
+    console.error("Error al crear comentario:", e);
+    return { error: true, message: e.message };
+  }
+};
+
+export const obtenerComentarios = async (publicacionId) => {
+  try {
+    const res = await apiClient.get(`/comentarios/obtenerComentario/${publicacionId}`);
+    return res.data; 
+  } catch (e) {
+    console.error("Error al obtener comentarios:", e);
+    return [];
+  }
+};
+
+
+export const getTodasLasPublicaciones = async () => {
+  try {
+    const res = await apiClient.get("/publicaciones");
+    return res.data.publicaciones;
+  } catch (error) {
+    console.error("Error al obtener publicaciones:", error);
+    return [];
+  }
+};
+
