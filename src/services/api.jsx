@@ -56,3 +56,4 @@ export const getTodasLasPublicaciones = async () => {
   }
 };
 
+export default apiClient;

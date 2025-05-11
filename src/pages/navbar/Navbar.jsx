@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
-import logo from "../../assets/icone-blog-et-blogger-bleu.png";
+import logo from "../../assets/navbar.png";
 import { Link, useLocation } from "react-router-dom";
-import { useBusquedaNavbar } from "../../shared/hook/useBusquedaNavbar.jsx";
+import { IonIcon } from "@ionic/react";
+import { searchOutline, homeOutline, bookOutline } from "ionicons/icons";
+import { useBusquedaNavbar } from "../../shared/hook/useBusquedaNavbar";
 
 const Navbar = () => {
   const location = useLocation();
+  const [showSearch, setShowSearch] = useState(false);
   const { handleBuscarCurso, handleBuscarPublicacion } = useBusquedaNavbar();
+
+  const handleSearchClick = () => {
+    setShowSearch(!showSearch);
+  };
+
+  const handleSearchInput = (e) => {
+    if (location.pathname.includes("/publicaciones")) {
+      handleBuscarPublicacion(e);
+    } else {
+      handleBuscarCurso(e);
+    }
+  };
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src={logo} alt="Logo" width="24" height="24" />
-        <span>NeuroCode</span>
+        <img src={logo} alt="Logo" />
       </div>
       <ul className="navbar-links">
         <li>
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>
-            Curso
+            <IonIcon icon={homeOutline} />
+            <span className="link-text">Curso</span>
           </Link>
         </li>
         <li>
@@ -25,32 +40,24 @@ const Navbar = () => {
             to="/publicaciones/todas"
             className={location.pathname.includes("/publicaciones") ? "active" : ""}
           >
-            Publicaciones
+            <IonIcon icon={bookOutline} />
+            <span className="link-text">Publicaciones</span>
           </Link>
         </li>
+        <li className="navbar-search">
+          <button className="search-button" onClick={handleSearchClick}>
+            <IonIcon icon={searchOutline} />
+          </button>
+          {showSearch && (
+            <input
+              type="text"
+              placeholder="Buscar..."
+              className="search-input"
+              onChange={handleSearchInput}
+            />
+          )}
+        </li>
       </ul>
-
-      <div className="navbar-search">
-        {location.pathname.includes("/publicaciones") && (
-          <input
-            type="text"
-            placeholder="Buscar publicación..."
-            onChange={handleBuscarPublicacion}
-            className="input-publicacion"
-          />
-        )}
-
-        {(location.pathname === "/" ||
-          (location.pathname.includes("/curso") &&
-            !location.pathname.includes("/publicaciones"))) && (
-          <input
-            type="text"
-            placeholder="Buscar curso..."
-            onChange={handleBuscarCurso}
-            className="input-curso"
-          />
-        )}
-      </div>
     </nav>
   );
 };

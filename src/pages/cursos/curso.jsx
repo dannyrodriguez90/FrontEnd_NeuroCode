@@ -1,46 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getCursos } from "../../services/api.jsx";
-import CourseCard from "../../components/cursos/CourseCard";
-import Navbar from "../navbar/Navbar"; 
+import Navbar from "../navbar/Navbar.jsx";
+import { useCursoFiltro } from "../../shared/hook/useCursoFiltro.jsx";
+import ListaCursos from "../../components/cursos/ListaCursos.jsx";
 import "./curso.css";
 
-export default class Cursos extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cursos: [],
-      filtro: ""
-    };
-  }
+const Cursos = () => {
+  const [cursos, setCursos] = useState([]);
 
-  async componentDidMount() {
-    const data = await getCursos();
-    this.setState({ cursos: data });
-
-    window.addEventListener("buscar-curso", (e) => {
-      this.setState({ filtro: e.detail });
+  useEffect(() => {
+    getCursos().then((data) => {
+      setCursos(data);
     });
-  }
+  }, []);
 
-  render() {
-    const { cursos, filtro } = this.state;
+  const { cursosFiltrados, setFiltro } = useCursoFiltro(cursos);
 
-    const cursosFiltrados = cursos.filter((curso) =>
-      curso.nombre.toLowerCase().includes(filtro.toLowerCase())
-    );
+  useEffect(() => {
+    const handleBuscar = (e) => {
+      setFiltro(e.detail);
+    };
 
-    return (
-      <>
-        <Navbar />
-        <div className="curso-container">
-          <h1 className="curso-title">Vista general de curso</h1>
-          <div className="curso-grid">
-            {cursosFiltrados.map((curso) => (
-              <CourseCard key={curso.uid} titulo={curso.nombre} cursoId={curso.uid} />
-            ))}
-          </div>
-        </div>
-      </>
-    );
-  }
-}
+    window.addEventListener("buscar-curso", handleBuscar);
+    return () => window.removeEventListener("buscar-curso", handleBuscar);
+  }, [setFiltro]);
+
+  return (
+    <>
+      <Navbar />
+      <div className="curso-container">
+        <h1 className="curso-title">Vista general de curso</h1>
+        <ListaCursos cursosFiltrados={cursosFiltrados} />
+      </div>
+    </>
+  );
+};
+
+export default Cursos;

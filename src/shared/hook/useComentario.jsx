@@ -12,8 +12,8 @@ export const useComentario = () => {
       ...prev,
       [publicacionId]: {
         ...prev[publicacionId],
-        [field]: value
-      }
+        [field]: value,
+      },
     }));
   };
 
@@ -22,7 +22,7 @@ export const useComentario = () => {
     if (result && Array.isArray(result)) {
       setComentariosPorPublicacion((prev) => ({
         ...prev,
-        [publicacionId]: result
+        [publicacionId]: result,
       }));
     }
   };
@@ -31,38 +31,44 @@ export const useComentario = () => {
     const data = {
       autor: nuevoComentario[publicacionId]?.autor || "",
       contenido: nuevoComentario[publicacionId]?.contenido || "",
-      publicacion: publicacionId
+      publicacion: publicacionId,
     };
 
     if (!data.autor || !data.contenido) {
       alert("Debes ingresar autor y contenido");
-      return;
+      return false;
     }
 
     setEnviando((prev) => ({ ...prev, [publicacionId]: true }));
 
     const result = await crearComentario(data);
 
-    if (!result.error && result.comentario) {
+    if (!result.error && (result.uid || result._id)) {
+      await cargarComentarios(publicacionId);
+
       setNuevoComentario((prev) => ({
         ...prev,
-        [publicacionId]: { autor: "", contenido: "" }
+        [publicacionId]: { autor: "", contenido: "" },
       }));
-      await cargarComentarios(publicacionId);
+
       setMensajeExito((prev) => ({
         ...prev,
-        [publicacionId]: "¡Gracias por tu comentario!"
+        [publicacionId]: "Mensaje guardado exitosamente",
       }));
 
       setTimeout(() => {
         setMensajeExito((prev) => ({
           ...prev,
-          [publicacionId]: ""
+          [publicacionId]: "",
         }));
-      }, 3000);
+      }, 5000);
+
+      setEnviando((prev) => ({ ...prev, [publicacionId]: false }));
+      return true;
     }
 
     setEnviando((prev) => ({ ...prev, [publicacionId]: false }));
+    return false;
   };
 
   return {
@@ -72,6 +78,6 @@ export const useComentario = () => {
     comentariosPorPublicacion,
     cargarComentarios,
     mensajeExito,
-    enviando
+    enviando,
   };
 };
