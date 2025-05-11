@@ -1,14 +1,19 @@
 import React from "react";
+import { IonIcon } from "@ionic/react";
+import { personOutline } from "ionicons/icons";
 
 const FormComentario = ({ pubId, values, onChange, onSubmit, enviando }) => (
   <div className="form-comentario">
-    <input
-      type="text"
-      placeholder="Tu nombre"
-      className="autor"
-      value={values.autor || ""}
-      onChange={(e) => onChange(pubId, "autor", e.target.value)}
-    />
+    <div className="form-group">
+      <IonIcon icon={personOutline} className="icon-autor" />
+      <input
+        type="text"
+        placeholder="Tu nombre"
+        className="autor"
+        value={values.autor || ""}
+        onChange={(e) => onChange(pubId, "autor", e.target.value)}
+      />
+    </div>
     <input
       type="text"
       placeholder="Tu comentario"

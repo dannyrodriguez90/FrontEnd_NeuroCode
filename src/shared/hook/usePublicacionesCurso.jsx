@@ -3,8 +3,8 @@ import { getPublicacionesPorCurso } from "../../services/api.jsx";
 import { useComentario } from "./useComentario";
 
 export const usePublicacionesCurso = (cursoId) => {
-  const [publicaciones, setPublicaciones] = useState([]); // Inicializado como array vacío
-  const [publicacionesFiltradas, setPublicacionesFiltradas] = useState([]); // Para manejar las publicaciones filtradas
+  const [publicaciones, setPublicaciones] = useState([]);
+  const [publicacionesFiltradas, setPublicacionesFiltradas] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState({});
 
   const {
@@ -20,7 +20,7 @@ export const usePublicacionesCurso = (cursoId) => {
   useEffect(() => {
     const fetch = async () => {
       const data = await getPublicacionesPorCurso(cursoId);
-      setPublicaciones(data || []); // Asegúrate de que sea un array
+      setPublicaciones(data || []);
       setPublicacionesFiltradas(data || []); // Inicializa las publicaciones filtradas
       data.forEach((pub) => cargarComentarios(pub._id));
     };

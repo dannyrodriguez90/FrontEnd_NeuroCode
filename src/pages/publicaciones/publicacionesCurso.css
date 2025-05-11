@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lexend", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #393232;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
 .publicaciones-container {
   padding: 1.5rem;
   max-width: 960px;
@@ -12,15 +33,30 @@
 }
 
 .publicacion-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  background-color: #FFF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
   padding: 1.25rem;
   margin-bottom: 2rem;
+  position: relative;
+  transition: 0.15s ease-in;
+}
+
+.publicacion-card:hover,
+.publicacion-card:focus-within {
+  box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.publicacion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .publicacion-titulo {
-  font-size: 1.125rem;
+  font-size: 1.375rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -36,8 +72,13 @@
   color: #333;
 }
 
+.publicacion-fecha {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #787878;
+}
+
 .boton-comentar {
-  margin-top: 0.75rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -110,10 +151,28 @@
   align-items: center;
 }
 
-.publicacion-header {
+.icon-button {
+  border: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  transition: 0.25s ease;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  cursor: pointer;
+  color: #565656;
+}
+
+.icon-button:hover,
+.icon-button:focus {
+  background-color: #EC4646;
+  color: #FFF;
 }
 
 @keyframes fade-in {
@@ -129,4 +188,75 @@
 
 .animate-fade-in {
   animation: fade-in 0.3s ease-in-out;
+}
+
+.filtros-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filtros-container select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.filtros-container select:focus {
+  border-color: #16C79A;
+  outline: none;
+}
+
+.filtros-container .icon {
+  font-size: 1.2rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filtros-container .icon:hover {
+  color: #16C79A;
+}
+
+.icon-fecha {
+  font-size: 1rem;
+  color: #787878;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.icon-curso {
+  font-size: 1rem;
+  color: #787878;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.icon-autor {
+  font-size: 1rem;
+  color: #787878;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-agregar-comentario {
+  font-size: 1.5rem;
+  color: #16c79a;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.boton-comentar:hover .icon-agregar-comentario {
+  transform: scale(1.2);
+  color: #13a57c;
 }

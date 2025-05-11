@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 import PublicacionCard from "../../components/publicaciones/PublicacionCard";
 import { usePublicacionesCurso } from "../../shared/hook/usePublicacionesCurso";
 import "./publicacionesCurso.css";
@@ -9,7 +9,7 @@ const PublicacionesCurso = () => {
   const { cursoId } = useParams();
 
   const {
-    publicaciones, 
+    publicaciones,
     mostrarFormulario,
     toggleFormulario,
     nuevoComentario,

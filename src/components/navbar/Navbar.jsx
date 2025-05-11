@@ -4,23 +4,24 @@ import logo from "../../assets/navbar.png";
 import { Link, useLocation } from "react-router-dom";
 import { IonIcon } from "@ionic/react";
 import { searchOutline, homeOutline, bookOutline } from "ionicons/icons";
-import { useBusquedaNavbar } from "../../shared/hook/useBusquedaNavbar";
 
 const Navbar = () => {
   const location = useLocation();
   const [showSearch, setShowSearch] = useState(false);
-  const { handleBuscarCurso, handleBuscarPublicacion } = useBusquedaNavbar();
 
   const handleSearchClick = () => {
     setShowSearch(!showSearch);
   };
 
   const handleSearchInput = (e) => {
-    if (location.pathname.includes("/publicaciones")) {
-      handleBuscarPublicacion(e);
-    } else {
-      handleBuscarCurso(e);
-    }
+    const eventName = location.pathname.includes("/publicaciones")
+      ? "buscar-publicacion"
+      : "buscar-curso";
+
+    const event = new CustomEvent(eventName, {
+      detail: e.target.value,
+    });
+    window.dispatchEvent(event);
   };
 
   return (

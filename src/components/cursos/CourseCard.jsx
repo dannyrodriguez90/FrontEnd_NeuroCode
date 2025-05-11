@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import blogImage from "../../assets/ejemplo-de-lo-que-es-un-blog.jpg";
 
 const CourseCard = ({ titulo, cursoId }) => {
   const navigate = useNavigate();
@@ -13,7 +12,9 @@ const CourseCard = ({ titulo, cursoId }) => {
     <div className="course-card">
       <div
         className="course-image"
-        style={{ backgroundImage: `url(${blogImage})` }}
+        style={{
+          backgroundImage: `url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjNqemsyYmVhamkzMzB5M2xibmNpM2ozcDFpaGw2dWl2cXZlMDBlbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lTkEOJr7uiskhJC8oW/giphy.gif)`,
+        }}
       />
       <div className="course-body">
         <div className="course-title">{titulo}</div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTodasLasPublicaciones } from "../../services/api.jsx";
-import Navbar from "../../pages/navbar/Navbar.jsx";
+import Navbar from "../../components/navbar/Navbar.jsx";
 import { useFiltroPublicaciones } from "../../shared/hook/useFiltroPublicaciones.jsx";
 import FiltrosPublicaciones from "../../components/publicaciones/FiltrosPublicaciones.jsx";
 import ListaPublicaciones from "../../components/publicaciones/ListaPublicaciones.jsx";

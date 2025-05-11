@@ -1,17 +1,18 @@
 import React from "react";
+import { IonIcon } from "@ionic/react";
+import { addCircleOutline } from "ionicons/icons";
 import FormComentario from "./FormComentario";
-import agregarIcon from "../../assets/agregar_comentario.png";
 
 const PublicacionCard = ({
   pub,
-  mostrarFormulario,
+  mostrarFormulario = {},
   toggleFormulario,
-  nuevoComentario,
+  nuevoComentario = {},
   handleInput,
   handleSubmit,
-  mensajeExito,
-  enviando,
-  comentarios
+  mensajeExito = {},
+  enviando = {},
+  comentarios = [],
 }) => {
   const handleEnviarComentario = async () => {
     const comentarioGuardado = await handleSubmit(pub._id);
@@ -29,7 +30,7 @@ const PublicacionCard = ({
           onClick={() => toggleFormulario(pub._id)}
           title="Agregar comentario"
         >
-          <img src={agregarIcon} alt="Agregar comentario" />
+          <IonIcon icon={addCircleOutline} className="icon-agregar-comentario" />
         </button>
       </div>
 

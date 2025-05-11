@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCursos } from "../../services/api.jsx";
-import Navbar from "../navbar/Navbar.jsx";
+import Navbar from "../../components/navbar/Navbar.jsx";
 import { useCursoFiltro } from "../../shared/hook/useCursoFiltro.jsx";
 import ListaCursos from "../../components/cursos/ListaCursos.jsx";
 import "./curso.css";
