@@ -1,12 +1,38 @@
-# React + Vite
+# FrontEnd NeuroCode
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación frontend desarrollada con **React** y **Vite**. Su propósito es gestionar cursos, permitiendo a los usuarios explorar cursos disponibles con un diseño atractivo.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gestión de Cursos**: Visualización de cursos disponibles con un diseño atractivo.
+- **Interfaz Intuitiva**: Diseño responsivo y moderno.
+- **Cursos**: Prederterminados.
+- **Comentarios**: Se agregan desde el FrontEnd.
+- **Publicaciones**: Se maneja desde el BanckEnd.
 
-## Expanding the ESLint configuration
+## Tecnologías Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React**: Biblioteca para construir interfaces de usuario.
+- **Vite**: Herramienta de desarrollo rápida para proyectos frontend.
+- **Axios**: Cliente HTTP para consumir APIs.
+- **React Router**: Navegación entre rutas de la aplicación.
+- **Ionicons**: Iconos modernos para mejorar la interfaz.
+- **CSS**: Estilización personalizada para un diseño atractivo.
+
+
+## Instalación
+
+1. Clona este repositorio:
+   git clone https://github.com/tu-usuario/FrontEnd_NeuroCode.git
+
+## Navega al directorio del proyecto:
+cd FrontEnd_NeuroCode
+
+## Instala las dependencias:
+npm install
+
+## Inicia el servidor de desarrollo
+npm run dev
+
+ ## API
+El proyecto consume una API REST alojada en http://localhost:3001/neuroCode/v1. 
